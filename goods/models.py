@@ -29,6 +29,7 @@ class Product(models.Model):
         db_table = 'Product'
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+        ordering = ('id',)
 
     def display_id(self):
         return f'{self.id:05}'
