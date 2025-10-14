@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     'main',
     'goods',
+    'users',
+    'carts',
+    'orders',
 
 ]
 
@@ -62,7 +65,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/ 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +86,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'home',
+        'NAME': 'homik',
         'USER': 'home',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -145,3 +148,4 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'users.User'

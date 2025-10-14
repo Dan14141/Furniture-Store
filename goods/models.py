@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls.base import reverse
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100,unique=True,verbose_name='Название')
@@ -38,6 +40,9 @@ class Product(models.Model):
         if self.discount:
             return round(self.price - self.price * self.discount / 100, 2)
         return self.price
+
+    def get_absolute_url(self):
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
 
     def skidka_check(self):
 
