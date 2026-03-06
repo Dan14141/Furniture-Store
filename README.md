@@ -15,7 +15,7 @@
 | Технология | Применение |
 |---|---|
 | **Python / Django** | Backend, бизнес-логика, ORM |
-| **PostgreSQL / SQLite** | База данных |
+| **PostgreSQL** | База данных |
 | **Bootstrap 5** | Адаптивная вёрстка |
 | **jQuery / AJAX** | Динамическое обновление корзины |
 | **Django ORM** | Работа с моделями и миграциями |
@@ -62,8 +62,10 @@ python manage.py runserver
 
 ## Скриншоты проекта
 
-**Главная страница**
-<img width="1654" height="899" alt="image" src="https://github.com/user-attachments/assets/2122883e-70cc-458f-a9cf-e4a9f8ee5411" />
+<h3 align="center">Главная страница</h3>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2122883e-70cc-458f-a9cf-e4a9f8ee5411" width="800" alt="Furniture Store Home Page" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 8px;">
+</p>
 
 ---
 **Каталог товаров**
