@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load carts_tags %}
+{% load cache %}
 
 {% block content %}
 <div class="row">
@@ -207,7 +208,7 @@
                     <!-- Закончилась разметка заказов -->
                 </div>
             </div>
-        </div>
+            </div>
     </div>
 </div>
 {% endblock  %}

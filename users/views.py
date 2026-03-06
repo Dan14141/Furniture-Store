@@ -1,22 +1,24 @@
-from django.contrib.auth.decorators import login_required
+from django.views import View
 from django.contrib import auth, messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.db.models.query import Prefetch
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
-
+from django.core.cache import cache
 from carts.models import Cart
+from common.mixins import CacheMixin
 from orders.models import OrderItem, Order
+
 
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
 
-
+# API для логина Пользователя
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
@@ -136,7 +138,7 @@ class UserRegistrationView(CreateView):
 #     }
 #     return render(request, 'users/registration.html', context)
 
-class UserProfileView(LoginRequiredMixin, UpdateView):
+class UserProfileView(LoginRequiredMixin, CacheMixin,UpdateView):
     template_name = 'users/profile.html'
     form_class = ProfileForm
     success_url = reverse_lazy('users:profile')
@@ -146,19 +148,26 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         messages.success(self.request, "Your profile information has been updated")
+        # При изменении профиля сбрасываем кеш заказов
+        cache.delete(f'orders_for_user{self.request.user.id}')
         return super().form_valid(form)
 
     def form_invalid(self, form):
         messages.error(self.request, "ERROR: Your profile information has not been updated")
+        return super().form_invalid(form)  # Добавьте возврат!
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home - Кабинет'
-        context['orders'] = Order.objects.filter(user=self.request.user).prefetch_related(
+
+        orders = Order.objects.filter(user=self.request.user).prefetch_related(
             Prefetch(
                 'orderitem_set',
-                queryset=OrderItem.objects.select_related('product'), )
+                queryset=OrderItem.objects.select_related('product'),
+            )
         ).order_by('-id')
+
+        context['orders'] = self.set_get_cache(orders, f'user_{self.request.user.id}_orders', 60 * 2)
         return context
 
 class UserCartView(TemplateView):
@@ -201,8 +210,10 @@ class UserCartView(TemplateView):
 #     return render(request, 'users/users_cart.html')
 
 
-@login_required
-def logout(LogoutView, request):
-    messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
-    auth.logout(request)
-    return redirect(reverse('main:index'))
+class UserLogoutView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        username = request.user.username
+        auth.logout(request)
+        messages.success(request, f"{username}, Вы вышли из аккаунта")
+        return redirect(reverse('main:index'))
