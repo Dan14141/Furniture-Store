@@ -60,20 +60,41 @@ python manage.py runserver
 
 ---
 
-## Скриншоты проекта
+## 📸 Интерфейс приложения
+
+---
 
 <h3 align="center">Главная страница</h3>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2122883e-70cc-458f-a9cf-e4a9f8ee5411" width="800" alt="Furniture Store Home Page" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 8px;">
+  <img src="https://github.com/user-attachments/assets/2122883e-70cc-458f-a9cf-e4a9f8ee5411" width="800" alt="Home Page" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
 </p>
+<p align="center"><em>Современный лэндинг с акцентом на визуальный контент и удобную навигацию.</em></p>
 
 ---
-**Каталог товаров**
-<img width="1356" height="851" alt="image" src="https://github.com/user-attachments/assets/c42de38c-cebb-4e23-a11b-3e96a2f1cad1" />
+
+<h3 align="center">Каталог товаров</h3>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c42de38c-cebb-4e23-a11b-3e96a2f1cad1" width="800" alt="Product Catalog" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+</p>
+<p align="center"><em>Интерактивная сетка товаров с фильтрацией и проработанными карточками позиций.</em></p>
 
 ---
-**Профиль пользователя**
-<img width="915" height="896" alt="image" src="https://github.com/user-attachments/assets/19a95ee3-f10a-4499-912b-d2081c427b12" />
+
+<h3 align="center">Профиль пользователя</h3>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/19a95ee3-f10a-4499-912b-d2081c427b12" width="700" alt="User Profile" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+</p>
+<p align="center"><em>Личный кабинет для управления персональными данными и отслеживания истории заказов.</em></p>
+
+---
+
+<h3 align="center">Окно корзины</h3>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bccea2ba-8819-4b70-a001-8636f04fe3f9" width="700" alt="Cart Window" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+</p>
+<p align="center"><em>Функциональное модальное окно с динамическим пересчетом стоимости и управлением списком покупок.</em></p>
+
+---
 
 ```
 > Проект открыт для обратной связи и предложений
